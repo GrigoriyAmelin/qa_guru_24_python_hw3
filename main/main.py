@@ -21,12 +21,10 @@ print(f'Task 2. send_date: {send_date} \n')
 # 3. Нормализуйте e-mail адреса отправителя и получателя: приведите к нижнему регистру и уберите пробелы по краям.
 # Запишите обратно в email["from"] и email["to"].
 
-email_from_corrected = email['from'].lower().strip()
-email_to_corrected = email['to'].lower().strip()
-email['from'] = email_from_corrected
-email['to'] = email_to_corrected
-print(f'Task 3. email_from_corrected: {email_from_corrected}')
-print(f'Task 3. email_to_corrected: {email_to_corrected}')
+email['from'] = email['from'].lower().strip()
+email['to'] = email['to'].lower().strip()
+print(f'Task 3. email_from_corrected: {email['from']}')
+print(f'Task 3. email_to_corrected: {email['to']}')
 print(f'Task 3. email: {email} \n')
 
 # 4. Извлеките логин и домен отправителя в две переменные login и domain.
@@ -61,14 +59,12 @@ print(f'Task 6. reduced_corporate_domain_list: {reduced_corporate_domain_list} \
 
 set_1 = set(private_domain_list)
 set_2 = set(corporate_domain_list)
-var_1 = bool(set_1 & set_2)
-var_2 = bool(set_2 & set_1)
-print(f'Task 7. Is private_domain_list intersets reduced_corporate_domain_list? {var_1}')
-print(f'Task 7. Is reduced_corporate_domain_list intersects private_domain_list? {var_2}\n')
+intersection = bool(set_1 & set_2)
+print(f'Task 7. Is private_domain_list intersected with reduced_corporate_domain_list? {'No' if not intersection else 'Yes'}\n')
 
 # 8. Проверьте «корпоративность» отправителя: создайте булеву переменную is_corporate, равную результату проверки вхождения домена отправителя в список корпоративных доменов.
 
-is_corporate = any(item in corporate_domain_list for item in private_domain_list)
+is_corporate = domain in corporate_domain_list
 print(f'Task 8. is_corporate: {is_corporate}\n')
 
 # 9. Соберите «чистый» текст сообщения без табов и переводов строк: замените "\t" и "\n" на пробел.
@@ -103,8 +99,8 @@ print(f'Task 11. pages: {pages} \n')
 # 12. Проверьте пустоту темы и тела письма: создайте переменные is_subject_empty, is_body_empty в котором будет
 # храниться что тема письма содержит данные.
 
-is_subject_empty = email['subject'] is None
-is_body_empty = email['body'] is None
+is_subject_empty = not email['subject'].strip()
+is_body_empty = not email['body'].strip()
 print(f'Task 12. is_subject_empty: {is_subject_empty}')
 print(f'Task 12. is_body_empty: {is_body_empty}\n')
 
