@@ -29,9 +29,7 @@ print(f'Task 3. email: {email} \n')
 
 # 4. Извлеките логин и домен отправителя в две переменные login и domain.
 
-from_after_split = email['from'].split('@')
-login = from_after_split[0]
-domain = from_after_split[1]
+login, domain = email['from'].split('@')
 print(f'Task 4. login: {login}, domain: {domain} \n')
 
 # 5. Создайте сокращённую версию текста: возьмите первые 10 символов email["body"] и добавьте многоточие "...".
@@ -60,7 +58,7 @@ print(f'Task 6. reduced_corporate_domain_list: {reduced_corporate_domain_list} \
 set_1 = set(private_domain_list)
 set_2 = set(corporate_domain_list)
 intersection = bool(set_1 & set_2)
-print(f'Task 7. Is private_domain_list intersected with reduced_corporate_domain_list? {'No' if not intersection else 'Yes'}\n')
+print(f'Task 7. Is private_domain_list intersected with reduced_corporate_domain_list? {'Yes' if intersection else 'No'}\n')
 
 # 8. Проверьте «корпоративность» отправителя: создайте булеву переменную is_corporate, равную результату проверки вхождения домена отправителя в список корпоративных доменов.
 
@@ -116,5 +114,8 @@ print(f'Task 13. masked_from: {email['masked_from']} \n')
 
 print(f'Task 14. private_domain_list before clearing: {private_domain_list}')
 updated_list = list(set(private_domain_list))
-updated_list.remove('list.ru' and 'bk.ru')
-print(f'Task 14. private_domain_list after clearing: {updated_list}')
+updated_list_after_cleaning = []
+for domain in updated_list:
+    if domain not in ('list.ru','bk.ru'):
+        updated_list_after_cleaning.append(domain)
+print(f'Task 14. private_domain_list after clearing: {updated_list_after_cleaning}')
